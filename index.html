@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floating Label Animation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+    
+    .form-group {
+      position: relative;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 500px;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    
+    .form-input:focus {
+      border-color: #4285f4;
+    }
+    
+    .form-label {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      color: #757575;
+      font-size: 16px;
+      transition: all 0.3s ease-out;
+      pointer-events: none;
+    }
+    
+    .form-input:focus ~ .form-label,
+    .form-input:not(:placeholder-shown) ~ .form-label {
+      top: -10px;
+      left: 10px;
+      font-size: 12px;
+      color: #4285f4;
+      background-color: white;
+      padding: 0 5px;
+    }
+    
+    /* Add a blue line animation */
+    .form-group::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #4285f4;
+      transition: width 0.3s ease;
+    }
+    
+    .form-input:focus ~ .form-group::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-group">
+    <input type="password" id="password" class="form-input" placeholder=" ">
+    <label for="password" class="form-label">Password</label>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const input = document.getElementById('password');
+      
+      // Focus the input after a short delay for demo purposes
+      setTimeout(() => {
+        input.focus();
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
